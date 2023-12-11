@@ -6,7 +6,7 @@
 TZ=Europe/London && ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 apt install -y nano tar wget lz4 zip jq runit build-essential git make gcc nvme-cli pv unzip
 runsvdir -P /etc/service &
-if [[ -z $GO_VERSION ]]; then GO_VERSION="1.20.1"; fi
+if [[ -z $GO_VERSION ]]; then GO_VERSION="1.20.5"; fi
 wget https://go.dev/dl/go$GO_VERSION.linux-amd64.tar.gz && tar -C /usr/local -xzf go$GO_VERSION.linux-amd64.tar.gz
 if [[ -z $LIBWASMVM_VERSION ]]; then LIBWASMVM_VERSION="v1.2.3"; fi
 wget -P /usr/lib/ https://github.com/CosmWasm/wasmvm/releases/download/$LIBWASMVM_VERSION/libwasmvm.x86_64.so
@@ -175,7 +175,7 @@ sleep 20
 if [[ -n $WEBHOOKS ]]
 then
 echo Включаю детектор пропозалов!
-wget -O /prop_detect.sh https://raw.githubusercontent.com/DecloudNodesLab/CodeBase/main/scripts/prop_detect.sh && chmod +x /prop_detect.sh
+wget -O /prop_detect.sh https://raw.githubusercontent.com/kvas001/Nodes/main/General/prop_detect.sh && chmod +x /prop_detect.sh
 mkdir -p /root/prop_detect/log    
 cat > /root/prop_detect/run <<EOF 
 #!/bin/bash
