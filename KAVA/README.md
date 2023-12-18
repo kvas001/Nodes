@@ -2,7 +2,7 @@ General/original.yaml - деплой Дмитрия<p>
 
 beta1.yaml<p>
 1) Заменен путь к SH файлу на локальный репозиторий<p>
-2) PEERD взято с сайта: https://cosmos.directory/kava/nodes<p>
+2) PEERS взято с сайта: https://cosmos.directory/kava/nodes<p>
 
 В документации</br>
 https://docs.kava.io/docs/participate/node-setup-guide</br>
