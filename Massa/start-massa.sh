@@ -43,8 +43,6 @@ EOF
 cat /massa/massa-node/config/config.toml
 sleep 5
 
-ufw allow 31244 && ufw allow 31245
-
 cd /
 mkdir /massa/massa-node/log
 
