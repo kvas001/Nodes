@@ -77,6 +77,8 @@ sleep 2m
 ./massa-client get_status -p $pass > ./STATUS
 sleep 2
 done
+echo Нода запустилась
+date
 chmod +x massa-client
 
 #./massa-client wallet_add_secret_keys $my_wallet_privkey -p $pass
