@@ -77,27 +77,27 @@ sleep 2m
 ./massa-client get_status -p $pass > ./STATUS
 sleep 2
 done
-
 chmod +x massa-client
-./massa-client wallet_add_secret_keys $my_wallet_privkey -p $pass
-sleep 10
-./massa-client wallet_info -p $pass
-my_wallet_addr=`./massa-client wallet_info -p $pass | grep "Address" | awk '{ print $2 }'`
-sleep 10
 
-./massa-client node_start_staking  $my_wallet_addr -p $pass
-synh=`./massa-client get_status -p $pass | grep "Version" | awk '{ print $2 }'`
-echo ============================================================================================
-echo === Your Public Key $my_wallet_addr Ваш публичный адрес ===
-echo ============================================================================================
-balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
-int_balance=${balance%%.*}
-date	
-echo Баланс = $int_balance
-if [[ "$int_balance" -gt "100" ]] ; then
-			echo "More than 100. Баланс токенов более 100. "
-			resp=$(./massa-client buy_rolls $my_wallet_addr 1 0 -p $pass)
-			echo $resp
-	elif [[ "$int_balance" -lt "100" ]] ; then
-			echo "Less than 100. Баланс токенов менее 100."
-fi
+#./massa-client wallet_add_secret_keys $my_wallet_privkey -p $pass
+#sleep 10
+#./massa-client wallet_info -p $pass
+#my_wallet_addr=`./massa-client wallet_info -p $pass | grep "Address" | awk '{ print $2 }'`
+#sleep 10
+#
+#./massa-client node_start_staking  $my_wallet_addr -p $pass
+#synh=`./massa-client get_status -p $pass | grep "Version" | awk '{ print $2 }'`
+#echo ============================================================================================
+#echo === Your Public Key $my_wallet_addr Ваш публичный адрес ===
+#echo ============================================================================================
+#balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
+#int_balance=${balance%%.*}
+#date	
+#echo Баланс = $int_balance
+#if [[ "$int_balance" -gt "100" ]] ; then
+#			echo "More than 100. Баланс токенов более 100. "
+#			resp=$(./massa-client buy_rolls $my_wallet_addr 1 0 -p $pass)
+#			echo $resp
+#	elif [[ "$int_balance" -lt "100" ]] ; then
+#			echo "Less than 100. Баланс токенов менее 100."
+#fi
