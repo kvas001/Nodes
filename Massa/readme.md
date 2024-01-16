@@ -1,8 +1,12 @@
 Dashboadr: [dashboard.massa.foundation](https://dashboard.massa.foundation)
 
-Проводник блоков: [explorer.massa.net/mainnet](https://explorer.massa.net/mainnet)
+Проводники блоков: 
+1) [explorer.massa.net/mainnet](https://explorer.massa.net/mainnet)
+2) [massexplo.io](https://massexplo.io) - показывает ближайшие разлоки
 
 Кол-во монет наград за тестнет по адресам: https://raw.githubusercontent.com/Massa-Foundation/genesis-ledger/main/input_listings/dashboard_data.json
+
+Токеномика: [docs.massa.net/docs/learn/tokenomics](https://docs.massa.net/docs/learn/tokenomics)
 
 1 цикл = 128 периодов = 34 минуты
 
