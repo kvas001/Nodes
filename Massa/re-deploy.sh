@@ -84,6 +84,12 @@ sleep 2
 done
 echo Нода запустилась
 date
+echo Заводим руками переменные с паролем и адресом командами export, 
+echo создаём кошель из своего приватника командой wallet_add_secret_keys 
+echo запускаем стейкинг командой node_start_staking
+echo На все дела 10 мин. Время пошло
+date
+sleep 10m
 
 for ((;;))
 do	
