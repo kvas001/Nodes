@@ -39,9 +39,6 @@ fi
 cat > /massa/massa-node/config/config.toml <<EOF 
 [protocol]
 routable_ip = "$IP"
-bind = "0.0.0.0:31244"
-[bootstrap]
-bind = "0.0.0.0:31245"
 EOF
 
 cat /massa/massa-node/config/config.toml
@@ -82,6 +79,8 @@ sleep 2m
 ./massa-client get_status > ./STATUS
 sleep 2
 done
+chmod +x massa-client
+
 echo Нода запустилась
 date
 echo Заводим руками переменные с паролем и адресом командами export, 
