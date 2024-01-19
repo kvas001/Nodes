@@ -1,4 +1,6 @@
 #!/bin/bash
+cd /massa/massa-client/
+my_wallet_addr=`./massa-client wallet_info -p $pass | grep "Address" | awk '{ print $2 }'`
 for ((;;))
 do	
 		balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
