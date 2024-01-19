@@ -53,7 +53,7 @@ mkdir /massa/massa-node/log
 cat > /massa/massa-node/run <<EOF 
 #!/bin/bash
 exec 2>&1
-exec ./massa-node
+exec ./massa-node -p $pass
 EOF
 
 chmod +x /massa/massa-node/run 
