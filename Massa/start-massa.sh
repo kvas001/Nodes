@@ -39,7 +39,11 @@ fi
 cat > /massa/massa-node/config/config.toml <<EOF 
 [protocol]
 routable_ip = "$IP"
+bind = "0.0.0.0:31244"
+[bootstrap]
+bind = "0.0.0.0:31245"
 EOF
+
 cat /massa/massa-node/config/config.toml
 sleep 5
 
@@ -49,7 +53,7 @@ mkdir /massa/massa-node/log
 cat > /massa/massa-node/run <<EOF 
 #!/bin/bash
 exec 2>&1
-exec ./massa-node -p $pass
+exec ./massa-node
 EOF
 
 chmod +x /massa/massa-node/run 
@@ -64,7 +68,7 @@ EOF
 chmod +x /massa/massa-node/log/run
 ln -s /massa/massa-node /etc/service
 cd /massa/massa-client/
-./massa-client get_status -p $pass > ./STATUS
+./massa-client get_status > ./STATUS
 
 while  grep error ./STATUS
 do
@@ -73,13 +77,13 @@ echo == Логи работы massa-node доступны командой tail 
 echo ================== Node is not connected, wait.. =======================
 echo ===== massa-node logs are available with tail -f /root/log/current =====
 echo $status
+date
 sleep 2m
-./massa-client get_status -p $pass > ./STATUS
+./massa-client get_status > ./STATUS
 sleep 2
 done
 echo Нода запустилась
 date
-chmod +x massa-client
 
 #./massa-client wallet_add_secret_keys $my_wallet_privkey -p $pass
 #sleep 10
