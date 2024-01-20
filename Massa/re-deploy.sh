@@ -86,9 +86,9 @@ date
 echo Заводим руками переменные с паролем и адресом командами export, 
 echo создаём кошель из своего приватника командой wallet_add_secret_keys 
 echo запускаем стейкинг командой node_start_staking
-echo На все дела 10 мин. Время пошло
+echo На все дела 8 мин. Время пошло
 date
-sleep 10m
+sleep 8m
 
 for ((;;))
 do	
@@ -98,7 +98,7 @@ do
 		
 		if [[ "$int_balance" -gt "100" ]] ; then
 			echo "Баланс токенов более 100. "
-			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0)
+			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0 -p $pass )
 			echo $resp
 		elif [[ "$int_balance" -lt "100" ]] ; then
 			echo "Баланс токенов менее 100."
