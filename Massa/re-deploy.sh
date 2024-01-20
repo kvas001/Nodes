@@ -98,7 +98,7 @@ do
 		
 		if [[ "$int_balance" -gt "100" ]] ; then
 			echo "Баланс токенов более 100. "
-			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0 -p $pass)
+			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0)
 			echo $resp
 		elif [[ "$int_balance" -lt "100" ]] ; then
 			echo "Баланс токенов менее 100."
