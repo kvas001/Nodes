@@ -73,8 +73,8 @@ echo ================= Нода не подключена, ожидайте.. ==
 echo == Логи работы massa-node доступны командой tail -f /root/log/current ==
 echo ================== Node is not connected, wait.. =======================
 echo ===== massa-node logs are available with tail -f /root/log/current =====
-echo $status
 date
+echo .
 sleep 2m
 ./massa-client get_status > ./STATUS
 sleep 2
@@ -94,11 +94,12 @@ for ((;;))
 do	
 		balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
 		int_balance=${balance%%.*}
-		date		
+		echo .
+  		date		
 		
 		if [[ "$int_balance" -gt "100" ]] ; then
 			echo "Баланс токенов более 100. "
-			resp=$(./massa-client buy_rolls $my_wallet_addr $(($int_balance/100)) 0 -p $pass )
+			resp=$(./massa-client -p $pass buy_rolls $my_wallet_addr $(($int_balance/100)) 0 )
 			echo $resp
 		elif [[ "$int_balance" -lt "100" ]] ; then
 			echo "Баланс токенов менее 100."
