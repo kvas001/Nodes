@@ -12,8 +12,8 @@ apt-get install -y nano runit
 runsvdir -P /etc/service &
 echo 'export my_root_password='${my_root_password} >> $HOME/.bashrc
 #echo 'export my_discord_id='${my_discord_id} >> $HOME/.bashrc
-echo 'export my_wallet_privkey='${my_wallet_privkey} >> $HOME/.bashrc
-#echo 'export my_wallet_addr='${my_wallet_addr} >> $HOME/.bashrc
+#echo 'export my_wallet_privkey='${my_wallet_privkey} >> $HOME/.bashrc
+echo 'export my_wallet_addr='${my_wallet_addr} >> $HOME/.bashrc
 echo 'export MASSA_LINK='${MASSA_LINK} >> $HOME/.bashrc
 echo 'export pass='${pass} >> $HOME/.bashrc
 echo 'export client='${client} >> $HOME/.bashrc
@@ -92,10 +92,10 @@ sleep 8m
 
 for ((;;))
 do	
-	source ~/.bashrc
+	#source ~/.bashrc
   	balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
 	int_balance=${balance%%.*}
-	echo $my_wallet_addr
+	#echo $my_wallet_addr
   	date		
 	
 	if [[ "$int_balance" -gt "100" ]] ; then
