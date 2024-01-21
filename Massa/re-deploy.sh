@@ -92,12 +92,10 @@ sleep 8m
 
 for ((;;))
 do	
-	#source ~/.bashrc
   	balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
 	int_balance=${balance%%.*}
-	#echo $my_wallet_addr
   	date		
-	
+	echo .
 	if [[ "$int_balance" -gt "100" ]] ; then
 		echo "Баланс токенов более 100. "
 		resp=$(./massa-client -p $pass buy_rolls $my_wallet_addr $(($int_balance/100)) 0 )
