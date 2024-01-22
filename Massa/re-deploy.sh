@@ -83,8 +83,7 @@ chmod +x massa-client
 
 echo Нода запустилась
 date
-echo Заводим руками переменные с паролем и адресом командами export, 
-echo создаём кошель из своего приватника командой wallet_add_secret_keys 
+echo Создаём кошель из своего приватника командой wallet_add_secret_keys 
 echo запускаем стейкинг командой node_start_staking
 echo На все дела 8 мин. Время пошло
 date
@@ -94,8 +93,8 @@ for ((;;))
 do	
   	balance=$(./massa-client wallet_info -p $pass | grep "Balance:" | awk '{ print $2 }'|sed "s/final=//;s/,//")
 	int_balance=${balance%%.*}
+ 	echo .
   	date		
-	echo .
 	if [[ "$int_balance" -gt "100" ]] ; then
 		echo "Баланс токенов более 100. "
 		resp=$(./massa-client -p $pass buy_rolls $my_wallet_addr $(($int_balance/100)) 0 )
