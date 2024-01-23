@@ -41,6 +41,9 @@ fi
 cat > /massa/massa-node/config/config.toml <<EOF 
 [protocol]
 routable_ip = "$IP"
+#bind = "0.0.0.0:31244"
+#[bootstrap]
+#bind = "0.0.0.0:31245"
 EOF
 
 cat /massa/massa-node/config/config.toml
