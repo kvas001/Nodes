@@ -10,15 +10,16 @@ wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.0g-2ubun
 dpkg -i ./libssl1.1_1.1.0g-2ubuntu4_amd64.deb
 apt-get install -y nano runit
 runsvdir -P /etc/service &
-echo 'export my_root_password='${my_root_password} >> $HOME/.bashrc
-#echo 'export my_discord_id='${my_discord_id} >> $HOME/.bashrc
-echo 'export my_wallet_privkey='${my_wallet_privkey} >> $HOME/.bashrc
-#echo 'export my_wallet_addr='${my_wallet_addr} >> $HOME/.bashrc
+#echo 'export my_root_password='${my_root_password} >> $HOME/.bashrc
 echo 'export MASSA_LINK='${MASSA_LINK} >> $HOME/.bashrc
-echo 'export pass='${pass} >> $HOME/.bashrc
-echo 'export client='${client} >> $HOME/.bashrc
-echo 'export node='${node} >> $HOME/.bashrc
 echo 'export wait='${wait} >> $HOME/.bashrc
+echo 'export IP='${IP} >> $HOME/.bashrc
+#echo 'export my_discord_id='${my_discord_id} >> $HOME/.bashrc
+#echo 'export my_wallet_privkey='${my_wallet_privkey} >> $HOME/.bashrc
+#echo 'export my_wallet_addr='${my_wallet_addr} >> $HOME/.bashrc
+#echo 'export pass='${pass} >> $HOME/.bashrc
+#echo 'export client='${client} >> $HOME/.bashrc
+#echo 'export node='${node} >> $HOME/.bashrc
 source $HOME/.bashrc
 echo ==========================================================
 sleep 5
@@ -32,17 +33,22 @@ cd /massa/massa-node/
 chmod +x massa-node
 cd /massa/massa-client/
 chmod +x massa-client
-if [[ -z $IP ]]
-then
-IP=$(wget -qO- eth0.me)
+
+if [[ -z $IP ]] ; then
+  IP=$(wget -qO- eth0.me)
+  cat > /massa/massa-node/config/config.toml <<EOF 
+  [protocol]
+  routable_ip = "$IP"
+  EOF
+else
+  cat > /massa/massa-node/config/config.toml <<EOF 
+  [protocol]
+  routable_ip = "$IP"
+  bind = "0.0.0.0:31244"
+  [bootstrap]
+  bind = "0.0.0.0:31245"
+  EOF
 fi
-cat > /massa/massa-node/config/config.toml <<EOF 
-[protocol]
-routable_ip = "$IP"
-bind = "0.0.0.0:31244"
-[bootstrap]
-bind = "0.0.0.0:31245"
-EOF
 
 cat /massa/massa-node/config/config.toml
 sleep 5
@@ -76,8 +82,8 @@ echo ================= Нода не подключена, ожидайте.. ==
 echo == Логи работы massa-node доступны командой tail -f /root/log/current ==
 echo ================== Node is not connected, wait.. =======================
 echo ===== massa-node logs are available with tail -f /root/log/current =====
-echo $status
 date
+echo .
 sleep 2m
 ./massa-client get_status > ./STATUS
 sleep 2
