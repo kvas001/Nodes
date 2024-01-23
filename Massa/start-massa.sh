@@ -14,10 +14,10 @@ runsvdir -P /etc/service &
 echo 'export MASSA_LINK='${MASSA_LINK} >> $HOME/.bashrc
 echo 'export wait='${wait} >> $HOME/.bashrc
 echo 'export IP='${IP} >> $HOME/.bashrc
+#echo 'export pass='${pass} >> $HOME/.bashrc
 #echo 'export my_discord_id='${my_discord_id} >> $HOME/.bashrc
 #echo 'export my_wallet_privkey='${my_wallet_privkey} >> $HOME/.bashrc
 #echo 'export my_wallet_addr='${my_wallet_addr} >> $HOME/.bashrc
-#echo 'export pass='${pass} >> $HOME/.bashrc
 #echo 'export client='${client} >> $HOME/.bashrc
 #echo 'export node='${node} >> $HOME/.bashrc
 source $HOME/.bashrc
@@ -34,21 +34,14 @@ chmod +x massa-node
 cd /massa/massa-client/
 chmod +x massa-client
 
-if [[ -z $IP ]] ; then
-  IP=$(wget -qO- eth0.me)
-  cat > /massa/massa-node/config/config.toml <<EOF 
-  [protocol]
-  routable_ip = "$IP"
-  EOF
-else
-  cat > /massa/massa-node/config/config.toml <<EOF 
-  [protocol]
-  routable_ip = "$IP"
-  bind = "0.0.0.0:31244"
-  [bootstrap]
-  bind = "0.0.0.0:31245"
-  EOF
+if [[ -z $IP ]] 
+then
+IP=$(wget -qO- eth0.me)
 fi
+cat > /massa/massa-node/config/config.toml <<EOF 
+[protocol]
+routable_ip = "$IP"
+EOF
 
 cat /massa/massa-node/config/config.toml
 sleep 5
@@ -59,7 +52,7 @@ mkdir /massa/massa-node/log
 cat > /massa/massa-node/run <<EOF 
 #!/bin/bash
 exec 2>&1
-exec ./massa-node
+exec ./massa-node -p ${pass}
 EOF
 
 chmod +x /massa/massa-node/run 
