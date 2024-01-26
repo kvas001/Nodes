@@ -94,10 +94,12 @@ sleep 10
 
 ./massa-client node_start_staking  $my_wallet_addr -p $pass
 synh=`./massa-client get_status -p $pass | grep "Version" | awk '{ print $2 }'`
+echo === Версия ПО ноды: $synh
 echo ============================================================================================
 echo === Ваш публичный адрес: $my_wallet_addr
 echo ============================================================================================
 echo === Логи работы massa-node смотреть командой: tail -f /root/log/current
+echo === Вход в клиент: cd /massa/massa-client && ./massa-client
 
 for ((;;))
 do	
