@@ -107,11 +107,11 @@ do
 	int_balance=${balance%%.*}
  	echo .
   date		
-	if [[ "$int_balance" -gt "100" ]] ; then
+	if [[ "$int_balance" -gt "99" ]] ; then
 		echo "Баланс токенов более 100. "
 		resp=$(./massa-client -p $pass buy_rolls $my_wallet_addr $(($int_balance/100)) 0 )
 		echo $resp
-	elif [[ "$int_balance" -lt "100" ]] ; then
+	else
 		echo "Баланс токенов менее 100."
 	fi
      	
